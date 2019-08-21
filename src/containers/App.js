@@ -8,14 +8,16 @@ import OwnerList from '../containers/Owner/OwnerList/OwnerList';
 import OwnerDetails from '../containers/Owner/OwnerDetails/OwnerDetails';
 import InternalServer from '../components/ErrorPages/InternalServer/InternalServer';
 import CreateOwner from './Owner/CreateOwner/CreateOwner';
+import AccountList from '../containers/Account/AccountList/AccountList';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Layout>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/owner-list" component={OwnerList} />
+          <Route path="/account-list" component={AccountList} />
           <Route path="/ownerDetails/:id" component={OwnerDetails} />
           <Route path="/createOwner" component={CreateOwner} />
           <Route path="/500" component={InternalServer} />
