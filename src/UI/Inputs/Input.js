@@ -45,6 +45,22 @@ const Input = (props) => {
                 </FormGroup>
             )
             break;
+            case 'select':
+                inputField = (
+                    <FormGroup controlId={props.id}>
+                        <Col componentClass={ControlLabel} sm={2}>
+                            {props.label}
+                        </Col>
+                        <Col sm={6}>
+                            <FormControl type={props.type} value={props.value} onChange=
+                                {props.changed} onBlur={props.blur} />
+                        </Col>
+                        <Col>
+                            <em>{errorMessage}</em>
+                        </Col>
+                    </FormGroup>
+                )
+                break;
         default: inputField = null;
     }
     return (

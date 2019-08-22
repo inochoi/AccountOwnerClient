@@ -9,7 +9,7 @@ const OwnersAccounts = (props) => {
             return (
                 <tr key={account.id}>
                     <td>{account.accountType}</td>
-                    <td><Moment format="DD/MM/YYYY">{account.dateCreated}</Moment></td>
+                    <td><Moment format="MM/DD/YYYY">{account.dateCreated}</Moment></td>
                 </tr>
             );
         })

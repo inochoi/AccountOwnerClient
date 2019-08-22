@@ -9,6 +9,7 @@ import OwnerDetails from '../containers/Owner/OwnerDetails/OwnerDetails';
 import InternalServer from '../components/ErrorPages/InternalServer/InternalServer';
 import CreateOwner from './Owner/CreateOwner/CreateOwner';
 import AccountList from '../containers/Account/AccountList/AccountList';
+import AccountDetails from '../containers/Account/AccountDetails/AccountDetails';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/owner-list" component={OwnerList} />
           <Route path="/account-list" component={AccountList} />
           <Route path="/ownerDetails/:id" component={OwnerDetails} />
+          <Route path="/accountDetails/:id" component={AccountDetails} />
           <Route path="/createOwner" component={CreateOwner} />
           <Route path="/500" component={InternalServer} />
           <Route path="*" component={NotFound} />

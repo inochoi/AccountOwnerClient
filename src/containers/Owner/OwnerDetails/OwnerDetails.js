@@ -61,12 +61,12 @@ const OwnerDetails = (props) => {
                         <strong>Date of birth:</strong>
                     </Col>
                     <Col md={3}>
-                        <Moment format="DD/MM/YYYY">{owner.dateOfBirth}</Moment>
+                        <Moment format="MM/DD/YYYY">{owner.dateOfBirth}</Moment>
                     </Col>
                 </Row>
                 {renderTypeOfUserConditionally(owner)}
             </Well>
-            <OwnersAccounts accounts={owner.accounts} />
+            <OwnersAccounts accounts={owner.accounts} />                                                                          
         </Fragment>
     )
 }
