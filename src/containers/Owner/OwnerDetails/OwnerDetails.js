@@ -7,6 +7,7 @@ import OwnersAccounts from '../../../components/OwnerComponents/OwnersAccounts/O
 
 const OwnerDetails = (props) => {
     const owner = useSelector(state => state.repository.data);
+    console.log(owner)
 
     const dispatch = useDispatch();
 

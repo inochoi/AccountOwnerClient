@@ -22,10 +22,18 @@ const UpdateOwner = (props) => {
 
     const dispatch = useDispatch();
 
+    
     useEffect(() => {
-        setOwnerForm(returnInputConfiguration());
+        const handleOwnerForm = () =>{
+            setOwnerForm(returnInputConfiguration());
+        }
+        handleOwnerForm();
+        },[]);
+    
+    console.log(ownerForm)
+    useEffect(() => {
         let id = props.match.params.id;
-        let url = '/api/owner/' + id;
+        let url = '/api/owner/' + id + '/account';
         dispatch(repositoryActions.getData(url, { ...props }));
     }, [props, dispatch]);
 
@@ -44,10 +52,22 @@ const UpdateOwner = (props) => {
         props.history.push('/owner-list');
     }
 
+    const updateOwner = (event) => {
+        event.preventDefault();
+
+        const ownerToUpdate = {
+            name: ownerForm.name.value,
+            address: ownerForm.address.value,
+            dateOfBirth: ownerForm.dateOfBirth.value
+        }
+        const url = '/api/owner' + props.data.id;
+        dispatch(repositoryActions.putData(url, ownerToUpdate, { ...props }))
+    }
+
     return (
         <Well>
             <Form horizontal
-            // onSubmit={updateOwner}
+            onSubmit={updateOwner}
             >
                 {
                     formElementsArray.map(element => {
