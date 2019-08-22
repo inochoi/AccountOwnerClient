@@ -30,8 +30,8 @@ const checkValidity = (value, validation) => {
     }
 }
 
-export const executeValidationAndReturnFormElement = (event, updatedOwnerForm, id) => {
-    let formElement = { ...updatedOwnerForm[id] };
+export const executeValidationAndReturnFormElement = (event, updatedForm, id) => {
+    let formElement = { ...updatedForm[id] };
     formElement.value = id === 'dateOfBirth' ? event : event.target.value;
     formElement.touched = true;
     const validationResponse = checkValidity(formElement.value,
@@ -41,10 +41,10 @@ export const executeValidationAndReturnFormElement = (event, updatedOwnerForm, i
     return formElement;
 }
 
-export const countInvalidElements = (ownerForm) => {
+export const countInvalidElements = (Form) => {
     let countInvalidElements = 0;
-    for (let element in ownerForm) {
-        if (!ownerForm[element].valid) {
+    for (let element in Form) {
+        if (!Form[element].valid) {
             countInvalidElements = countInvalidElements + 1;
             break;
         }

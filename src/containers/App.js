@@ -10,6 +10,8 @@ import InternalServer from '../components/ErrorPages/InternalServer/InternalServ
 import CreateOwner from './Owner/CreateOwner/CreateOwner';
 import AccountList from '../containers/Account/AccountList/AccountList';
 import AccountDetails from '../containers/Account/AccountDetails/AccountDetails';
+import CreateAccount from './Account/CreateAccount/CreateAccount';
+import UpdateOwner from './Owner/UpdateOwner/UpdateOwner';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
           <Route path="/ownerDetails/:id" component={OwnerDetails} />
           <Route path="/accountDetails/:id" component={AccountDetails} />
           <Route path="/createOwner" component={CreateOwner} />
+          <Route path="/createAccount" component={CreateAccount} />
+          <Route path="/updateOwner/:id" component={UpdateOwner} />
           <Route path="/500" component={InternalServer} />
           <Route path="*" component={NotFound} />
         </Switch>

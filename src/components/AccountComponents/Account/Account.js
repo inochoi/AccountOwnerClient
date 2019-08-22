@@ -13,7 +13,7 @@ const Account = (props) => {
     }
 
     const redirectToDeleteAccount = (id, history) => {
-        history.push('/delteOwner/' + id);
+        history.push('/deleteAccount/' + id);
     }
 
     return ( 

@@ -1,61 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import Input from '../../../UI/Inputs/Input';
 import { Form, Well, Button, FormGroup, Col } from 'react-bootstrap';
-import { returnAccountInputConfiguration } from '../../../Utility/AccountInputConfiguration';
-import * as FormUtilityActions from '../../../Utility/FormUtilityActions';
+import { returnInputConfiguration } from '../../../Utility/InputConfiguration';
 import { useSelector, useDispatch } from 'react-redux';
+import * as FormUtilityActions from '../../../Utility/FormUtilityActions';
+import Input from '../../../UI/Inputs/Input';
 import * as repositoryActions from '../../../store/actions/repositoryActions';
 import * as errorHandlerActions from '../../../store/actions/errorHandlerActions';
+import moment from 'moment';
 import SuccessModal from '../../../Modals/SuccessModal/SuccessModal';
 import ErrorModal from '../../../Modals/ErrorModal/ErrorModal';
-import moment from 'moment';
 
-const CreateAccount = (props) => {
-    const [accountForm, setAccountForm] = useState({});
-    const [isFormValid, setIsFormValid] = useState(false);
 
+const UpdateOwner = (props) => {
+    const [ownerForm, setOwnerForm] = useState({});
+    const [isFormValid, setIsFormValid] = useState(true);
+
+    const owner = useSelector(state => state.repository.data);
     const showSuccessModal = useSelector(state => state.repository.showSuccessModal);
     const showErrorModal = useSelector(state => state.errorHandler.showErrorModal);
     const errorMessage = useSelector(state => state.errorHandler.errorMessage);
 
     const dispatch = useDispatch();
-    console.log(accountForm)
 
     useEffect(() => {
-        setAccountForm(returnAccountInputConfiguration());
-    }, []);
+        setOwnerForm(returnInputConfiguration());
+        let id = props.match.params.id;
+        let url = '/api/owner/' + id;
+        dispatch(repositoryActions.getData(url, { ...props }));
+    }, [props, dispatch]);
 
-    const formElementsArray = FormUtilityActions.convertStateToArrayOfFormObjects({ ...accountForm });
-
-    const createAccount = (event) => {
-        event.preventDefault();
-
-        const accountToCreate = {
-            accountType: accountForm.accountType.value,
-            dateCreated: moment().format('MM/DD/YYYY'),
-            ownerId: accountForm.owner.value
-        }
-
-        const url = '/api/account';
-        dispatch(repositoryActions.postData(url, accountToCreate, { ...props }))
-    }
+    const formElementsArray = FormUtilityActions.convertStateToArrayOfFormObjects({ ...ownerForm });
 
     const handleChangeEvent = (event, id) => {
-        const updateAccountForm = { ...accountForm };
-        updateAccountForm[id] =
-            FormUtilityActions.executeValidationAndReturnFormElement(event, updateAccountForm, id);
-        const counter = FormUtilityActions.countInvalidElements(updateAccountForm);
-        setAccountForm(updateAccountForm);
+        const updatedOwnerForm = { ...ownerForm };
+        updatedOwnerForm[id] =
+            FormUtilityActions.executeValidationAndReturnFormElement(event, updatedOwnerForm, id);
+        const counter = FormUtilityActions.countInvalidElements(updatedOwnerForm);
+        setOwnerForm(updatedOwnerForm);
         setIsFormValid(counter === 0);
     }
 
-    const redirectToAccountList = () => {
-        props.history.push('/account-list');
+    const redirectToOwnerList = () => {
+        props.history.push('/owner-list');
     }
 
     return (
         <Well>
-            <Form horizontal onSubmit={createAccount}>
+            <Form horizontal
+            // onSubmit={updateOwner}
+            >
                 {
                     formElementsArray.map(element => {
                         return <Input key={element.id} elementType=
@@ -74,10 +67,10 @@ const CreateAccount = (props) => {
                 <FormGroup>
                     <Col mdOffset={6} md={1}>
                         <Button type='submit' bsStyle='info' disabled=
-                            {!isFormValid}>Create</Button>
+                            {!isFormValid}>Update</Button>
                     </Col>
                     <Col md={1}>
-                        <Button bsStyle='danger' onClick={redirectToAccountList}>Cancel</Button>
+                        <Button bsStyle='danger' onClick={redirectToOwnerList}>Cancel</Button>
                     </Col>
                 </FormGroup>
             </Form>
@@ -85,12 +78,13 @@ const CreateAccount = (props) => {
                 modalHeaderText={'Success message'}
                 modalBodyText={'Action completed successfully'}
                 okButtonText={'OK'}
-                successClick={() => dispatch(repositoryActions.closeSuccessModal({ ...props }, '/account-List'))} />
+                successClick={() => dispatch(repositoryActions.closeSuccessModal({ ...props }, '/owner-List'))} />
             <ErrorModal show={showErrorModal}
                 modalHeaderText={'Error message'}
                 modalBodyText={errorMessage}
                 okButtonText={'OK'} closeModal={() => dispatch(errorHandlerActions.closeErrorModal())} />
         </Well>
-    )
+    );
 }
-export default CreateAccount;
+
+export default UpdateOwner;
