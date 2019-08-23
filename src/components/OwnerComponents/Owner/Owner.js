@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 import { Button } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import * as repositoryActions from '../../../store/actions/repositoryActions';
+
+
 const redirectToOwnerDetails = (id, history) => {
     history.push('/ownerDetails/' + id);
 }
@@ -11,6 +15,17 @@ const redirectToDeleteOwner = (id, history) => {
     history.push('/deleteOwner/' + id);
 }
 const Owner = (props) => {
+    const dispatch = useDispatch();
+
+    const editUser = (id) =>{
+        let url = 'api/owner/' + id;
+        dispatch(repositoryActions.editUser(url, {...props}))
+    }
+
+    const myFunction = (id, history) =>{
+        redirectToUpdateOwner(id, history);
+        editUser(id);
+    }
     return (
         <Fragment>
             <tr>
@@ -21,7 +36,7 @@ const Owner = (props) => {
                     <Button onClick={() => redirectToOwnerDetails(props.owner.id, props.history)}>Details</Button>
                 </td>
                 <td>
-                    <Button bsStyle="success" onClick={() => redirectToUpdateOwner(props.owner.id, props.history)}>Update</Button>
+                    <Button bsStyle="success" onClick={() => myFunction(props.owner.id, props.history)}>Update</Button>
                 </td>
                 <td>
                     <Button bsStyle="danger" onClick={() => redirectToDeleteOwner(props.owner.id, props.history)}>Delete</Button>

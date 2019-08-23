@@ -22,7 +22,6 @@ const Input = (props) => {
         dispatch(repositoryActions.getData(url, { ...props }));
     }, [props, dispatch])
 
-
     switch (props.elementType) {
         case 'input':
             inputField = (

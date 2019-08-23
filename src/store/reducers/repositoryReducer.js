@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     data: null,
-    showSuccessModal: false
+    showSuccessModal: false,
+    userToUpdate: {}
 }
 
 const executeGetDataSuccess = (state, action) => {
@@ -37,6 +38,18 @@ const executeCloseSuccessModal = (state, action) => {
         showSuccessModal: false
     }
 }
+const executeEditDataSuccess = (state, action) => {
+    return {
+        ...state,
+        userToUpdate: action.data
+    }
+}
+const executeUpdateUserToUpdateSuccess = (state, action) => {
+    return {
+        ...state,
+        userToUpdate: action.data
+    }
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -50,6 +63,10 @@ const reducer = (state = initialState, action) => {
             return executeDeleteDataSuccess(state, action);
         case actionTypes.CLOSE_SUCCESS_MODAL:
             return executeCloseSuccessModal(state, action)
+        case actionTypes.EDIT_DATA_SUCCESS:
+            return executeEditDataSuccess(state, action)
+        case actionTypes.UPDATE_USER_TO_UPDATE:
+            return executeUpdateUserToUpdateSuccess(state, action)
         default:
             return state;
     }

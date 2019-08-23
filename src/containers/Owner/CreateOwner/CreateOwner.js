@@ -19,6 +19,7 @@ const CreateOwner = (props) => {
 
     const dispatch = useDispatch();
 
+    
     useEffect(() => {
         setOwnerForm(returnInputConfiguration());
     }, []);

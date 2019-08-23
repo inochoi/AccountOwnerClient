@@ -20,6 +20,24 @@ export const getData = (url, props) => {
             })
     }
 }
+const getEditDataSuccess = (data) => {
+    return {
+        type: actionTypes.EDIT_DATA_SUCCESS,
+        data: data
+    }
+}
+
+export const editUser = (url, props) => {
+    return (dispatch) => {
+        axios.get(url)
+            .then(response => {
+                dispatch(getEditDataSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(errorHandlerActions.handleHTTPError(error, props));
+            })
+    }
+}
 
 const postDataSuccess = (response) => {
     return {
