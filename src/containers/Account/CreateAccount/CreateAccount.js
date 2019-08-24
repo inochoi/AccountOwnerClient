@@ -19,7 +19,6 @@ const CreateAccount = (props) => {
     const errorMessage = useSelector(state => state.errorHandler.errorMessage);
 
     const dispatch = useDispatch();
-    console.log(accountForm)
 
     useEffect(() => {
         setAccountForm(returnAccountInputConfiguration());

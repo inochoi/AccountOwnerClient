@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Well, Button, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
 import { returnInputConfiguration } from '../../../Utility/InputConfiguration';
 import { useSelector, useDispatch } from 'react-redux';
 import * as FormUtilityActions from '../../../Utility/FormUtilityActions';
-import Input from '../../../UI/Inputs/Input';
 import * as repositoryActions from '../../../store/actions/repositoryActions';
 import * as errorHandlerActions from '../../../store/actions/errorHandlerActions';
 import moment from 'moment';
@@ -51,14 +50,6 @@ const UpdateOwner = (props) => {
         dispatch(repositoryActions.putData(url, ownerToUpdate, { ...props }))
     }
 
-    const handleChangeEvent = (event, id) => {
-        const updatedOwnerForm = { ...ownerForm };
-        updatedOwnerForm[id] =
-            FormUtilityActions.executeValidationAndReturnFormElement(event, updatedOwnerForm, id);
-        const counter = FormUtilityActions.countInvalidElements(updatedOwnerForm);
-        setOwnerForm(updatedOwnerForm);
-        setIsFormValid(counter === 0);
-    }
 
     const handleChange = (e, id) => {
         const updatedOwnerForm = { ...ownerForm };
@@ -70,7 +61,6 @@ const UpdateOwner = (props) => {
         dispatch({ type: 'UPDATE_USER_TO_UPDATE', data: { ...owner, [e.target.name]: e.target.value } })
     }
     const handleDateChange = e => {
-        const value = e.format("MM/DD/YYYY");
         dispatch({ type: 'UPDATE_USER_TO_UPDATE', data: { ...owner, dateOfBirth: e } })
     }
 
@@ -78,8 +68,6 @@ const UpdateOwner = (props) => {
         props.history.push('/owner-list');
     }
 
-    console.log(ownerForm);
-    console.log(owner);
     return (
         <Well>
             <Form horizontal onSubmit={updateOwner}>
@@ -158,7 +146,8 @@ const UpdateOwner = (props) => {
             <ErrorModal show={showErrorModal}
                 modalHeaderText={'Error message'}
                 modalBodyText={errorMessage}
-                okButtonText={'OK'} closeModal={() => dispatch(errorHandlerActions.closeErrorModal())} />
+                okButtonText={'OK'}
+                closeModal={() => dispatch(errorHandlerActions.closeErrorModal())} />
         </Well>
     )
 }

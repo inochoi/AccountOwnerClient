@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 import { Button } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as repositoryActions from '../../../store/actions/repositoryActions';
 
 
@@ -17,15 +17,16 @@ const redirectToDeleteOwner = (id, history) => {
 const Owner = (props) => {
     const dispatch = useDispatch();
 
-    const editUser = (id) =>{
+    const editUser = (id) => {
         let url = 'api/owner/' + id;
-        dispatch(repositoryActions.editUser(url, {...props}))
+        dispatch(repositoryActions.edit(url, { ...props }))
     }
 
-    const myFunction = (id, history) =>{
+    const myFunction = (id, history) => {
         redirectToUpdateOwner(id, history);
         editUser(id);
     }
+    
     return (
         <Fragment>
             <tr>

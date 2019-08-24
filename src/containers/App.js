@@ -12,6 +12,8 @@ import AccountList from '../containers/Account/AccountList/AccountList';
 import AccountDetails from '../containers/Account/AccountDetails/AccountDetails';
 import CreateAccount from './Account/CreateAccount/CreateAccount';
 import UpdateOwner from './Owner/UpdateOwner/UpdateOwner';
+import UpdateAccount from './Account/UpdateAccount/UpdateAccount';
+import DeleteOwner from './Owner/DeleteOwner/DeleteOwner';
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
           <Route path="/createOwner" component={CreateOwner} />
           <Route path="/createAccount" component={CreateAccount} />
           <Route path="/updateOwner/:id" component={UpdateOwner} />
+          <Route path="/updateAccount/:id" component={UpdateAccount} />
+          <Route path="/deleteOwner/:id" component={DeleteOwner} />
           <Route path="/500" component={InternalServer} />
           <Route path="*" component={NotFound} />
         </Switch>

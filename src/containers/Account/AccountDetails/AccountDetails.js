@@ -8,13 +8,11 @@ import AccountsOwners from '../../../components/AccountComponents/AccountsOwners
 const AccountDetails = (props) => {
 
     const account = useSelector(state => state.repository.data);
-    console.log(account);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
         let id = props.match.params.id;
-        console.log(id);
         let url = '/api/account/' + id + '/owner';
         dispatch(repositoryActions.getData(url, {...props}));
     }, [props, dispatch])

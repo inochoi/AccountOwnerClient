@@ -27,7 +27,7 @@ const getEditDataSuccess = (data) => {
     }
 }
 
-export const editUser = (url, props) => {
+export const edit = (url, props) => {
     return (dispatch) => {
         axios.get(url)
             .then(response => {
