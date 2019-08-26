@@ -22,13 +22,19 @@ const Account = (props) => {
     const dispatch = useDispatch();
 
     const editAccount = (id) => {
-        let url = 'api/account/' + id;
+        let url = 'api/account/' + id + '/owner';
         dispatch(repositoryActions.edit(url, { ...props }))
+    }
+
+    const getOwner = () => {
+        let url = 'api/owner/';
+        dispatch(repositoryActions.getData(url, {...props}))
     }
 
     const myFunction = (id, history) => {
         redirectToUpdateAccount(id, history);
         editAccount(id);
+        getOwner();
     }
 
     return ( 

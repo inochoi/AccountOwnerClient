@@ -68,6 +68,9 @@ const UpdateOwner = (props) => {
         props.history.push('/owner-list');
     }
 
+    console.log(ownerForm)
+    console.log(owner)
+
     return (
         <Well>
             <Form horizontal onSubmit={updateOwner}>
@@ -83,7 +86,7 @@ const UpdateOwner = (props) => {
                             onChange=
                             {e => handleChange(e, 'name')}
                             onBlur=
-                            {handleChange}
+                            {e => handleChange(e, 'name')}
                         />
                     </Col>
                     <Col>
@@ -103,7 +106,7 @@ const UpdateOwner = (props) => {
                             onChange=
                             {e => handleChange(e, 'address')}
                             onBlur=
-                            {handleChange}
+                            {e => handleChange(e, 'address')}
                         />
                     </Col>
                     <Col>
