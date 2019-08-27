@@ -4,4 +4,4 @@
 npm install
 npm start
 ```
-Server-side code is in my `AccountOwnerServer` repository.
+Server-side code is in my **[`AccountOwnerServer`](https://github.com/inochoi/AccountOwnerServer)** repository.
