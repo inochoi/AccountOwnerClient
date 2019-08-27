@@ -1,7 +1,7 @@
 # AccountOwnerClient
 ## Installation
 ```js
-`npm install`
-`npm start`
+npm install
+npm start
 ```
 Server-side code is in my `AccountOwnerServer` repository.
