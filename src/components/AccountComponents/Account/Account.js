@@ -28,7 +28,7 @@ const Account = (props) => {
 
     const getOwner = () => {
         let url = 'api/owner/';
-        dispatch(repositoryActions.getData(url, {...props}))
+        dispatch(repositoryActions.getData(url, { ...props }))
     }
 
     const myFunction = (id, history) => {
@@ -37,7 +37,7 @@ const Account = (props) => {
         getOwner();
     }
 
-    return ( 
+    return (
         <Fragment>
             <tr>
                 <td>{props.account.id}</td>
@@ -54,7 +54,7 @@ const Account = (props) => {
                 </td>
             </tr>
         </Fragment>
-     );
+    );
 }
 
 export default Account;

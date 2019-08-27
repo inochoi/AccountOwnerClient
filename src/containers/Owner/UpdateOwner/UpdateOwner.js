@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Well, Button, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
-import { returnInputConfiguration } from '../../../Utility/InputConfiguration';
+import {returnOwnerUpdateInputConfiguration} from '../../../Utility/OwnerUpdateInputConfiguration';
 import { useSelector, useDispatch } from 'react-redux';
 import * as FormUtilityActions from '../../../Utility/FormUtilityActions';
 import * as repositoryActions from '../../../store/actions/repositoryActions';
@@ -14,7 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const UpdateOwner = (props) => {
     const owner = useSelector(state => state.repository.userToUpdate);
 
-    const [ownerForm, setOwnerForm] = useState(returnInputConfiguration());
+    const [ownerForm, setOwnerForm] = useState(returnOwnerUpdateInputConfiguration());
     const [isFormValid, setIsFormValid] = useState(true);
 
     const showSuccessModal = useSelector(state => state.repository.showSuccessModal);
@@ -43,7 +43,7 @@ const UpdateOwner = (props) => {
         const ownerToUpdate = {
             name: owner.name,
             address: owner.address,
-            dateOfBirth: owner.dateOfBirth.format("MM/DD/YYYY")
+            dateOfBirth: moment(owner.dateOfBirth)
         }
 
         const url = '/api/owner/' + props.match.params.id;

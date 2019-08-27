@@ -88,9 +88,9 @@ const Input = (props) => {
                             {props.changed} onBlur={props.blur}>
                             <option value="" disabled selected>select owner</option>
 
-                            {owner.map(ow => 
-                            <option value={ow.id}>{ow.name}</option>
-                                )}
+                            {owner.map(ow =>
+                                <option value={ow.id}>{ow.name}</option>
+                            )}
                         </FormControl>
                     </Col>
                     <Col>

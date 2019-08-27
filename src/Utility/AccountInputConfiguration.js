@@ -1,7 +1,7 @@
 
 export const returnAccountInputConfiguration = () => {
     return {
-        
+
         accountType: {
             element: 'accountTypeSelect', type: 'select', value: '',
             validation: { required: true }, valid: false, touched: false,

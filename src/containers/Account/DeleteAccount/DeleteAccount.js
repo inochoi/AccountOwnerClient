@@ -7,7 +7,7 @@ import Moment from 'react-moment';
 import SuccessModal from '../../../Modals/SuccessModal/SuccessModal';
 import ErrorModal from '../../../Modals/ErrorModal/ErrorModal';
 
-const DeleteOwner = (props) => {
+const DeleteAccount = (props) => {
 
     const data = useSelector(state => state.repository.data);
     const showSuccessModal = useSelector(state => state.repository.showSuccessModal);
@@ -15,21 +15,21 @@ const DeleteOwner = (props) => {
     const errorMessage = useSelector(state => state.errorHandler.errorMessage);
     const dispatch = useDispatch();
 
-    let owner = { ...data };
+    let account = { ...data };
 
-    const deleteOwner = (event) => {
+    const deleteAccount = (event) => {
         event.preventDefault();
-        const url = "/api/owner/" + data.id;
+        const url = "/api/account/" + data.id;
         dispatch(repositoryActions.deleteData(url, { ...props }));
     }
 
-    const redirectToOwnerList = () => {
-        props.history.push('/owner-List');
+    const redirectToAccountList = () => {
+        props.history.push('/account-List');
     }
 
     useEffect(() => {
         const id = props.match.params.id;
-        const url = '/api/owner/' + id;
+        const url = '/api/account/' + id;
         dispatch(repositoryActions.getData(url, { ...props }));
     }, [dispatch, props]);
 
@@ -38,39 +38,39 @@ const DeleteOwner = (props) => {
             <Well>
                 <Row>
                     <Col md={3}>
-                        <ControlLabel htmlFor='name'>Owners name:</ControlLabel>
+                        <ControlLabel htmlFor='name'>Account Id:</ControlLabel>
                     </Col>
                     <Col md={7}>
-                        <span name='name'>{owner.name}</span>
+                        <span name='id'>{account.id}</span>
                     </Col>
                 </Row>
 
                 <Row>
                     <Col md={3}>
-                        <ControlLabel htmlFor='dateOfBirth'>Date of birth:</ControlLabel>
+                        <ControlLabel htmlFor='dateOfBirth'>Date Created:</ControlLabel>
                     </Col>
                     <Col md={7}>
-                        <span name='dateOfBirth'><Moment format="MM/DD/YYYY">
-                            {owner.dateOfBirth}</Moment></span>
+                        <span name='dateCreated'><Moment format="MM/DD/YYYY">
+                            {account.dateCreated}</Moment></span>
                     </Col>
                 </Row>
 
                 <Row>
                     <Col md={3}>
-                        <ControlLabel htmlFor='address'>Address:</ControlLabel>
+                        <ControlLabel htmlFor='accountType'>Account Type:</ControlLabel>
                     </Col>
                     <Col md={7}>
-                        <span name='address'>{owner.address}</span>
+                        <span name='accountType'>{account.accountType}</span>
                     </Col>
                 </Row>
             </Well>
 
             <Row>
                 <Col mdOffset={8} md={1}>
-                    <Button type="submit" bsStyle="info" onClick={deleteOwner}>Delete</Button>
+                    <Button type="submit" bsStyle="info" onClick={deleteAccount}>Delete</Button>
                 </Col>
                 <Col md={1}>
-                    <Button bsStyle='danger' onClick={redirectToOwnerList}>Cancel</Button>
+                    <Button bsStyle='danger' onClick={redirectToAccountList}>Cancel</Button>
                 </Col>
             </Row>
 
@@ -78,7 +78,7 @@ const DeleteOwner = (props) => {
                 modalHeaderText={'Success message'}
                 modalBodyText={'Action completed successfully'}
                 okButtonText={'OK'}
-                successClick={() => dispatch(repositoryActions.closeSuccessModal({ ...props }, '/owner-List'))} />
+                successClick={() => dispatch(repositoryActions.closeSuccessModal({ ...props }, '/account-List'))} />
             <ErrorModal show={showErrorModal}
                 modalHeaderText={'Error message'}
                 modalBodyText={errorMessage}
@@ -88,4 +88,4 @@ const DeleteOwner = (props) => {
     );
 }
 
-export default DeleteOwner;
+export default DeleteAccount;

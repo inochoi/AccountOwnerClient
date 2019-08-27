@@ -26,7 +26,7 @@ const Owner = (props) => {
         redirectToUpdateOwner(id, history);
         editUser(id);
     }
-    
+
     return (
         <Fragment>
             <tr>

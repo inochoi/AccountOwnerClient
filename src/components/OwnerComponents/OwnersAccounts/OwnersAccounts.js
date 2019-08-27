@@ -8,6 +8,7 @@ const OwnersAccounts = (props) => {
         accounts = props.accounts.map(account => {
             return (
                 <tr key={account.id}>
+                    <td>{account.id}</td>
                     <td>{account.accountType}</td>
                     <td><Moment format="MM/DD/YYYY">{account.dateCreated}</Moment></td>
                 </tr>
@@ -20,6 +21,7 @@ const OwnersAccounts = (props) => {
                 <Table responsive striped>
                     <thead>
                         <tr>
+                            <th>Account id</th>
                             <th>Account type</th>
                             <th>Date created</th>
                         </tr>

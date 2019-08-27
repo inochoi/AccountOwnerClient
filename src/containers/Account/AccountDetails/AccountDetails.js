@@ -17,8 +17,6 @@ const AccountDetails = (props) => {
         dispatch(repositoryActions.getData(url, {...props}));
     }, [props, dispatch])
 
-
-
     return ( 
         <Fragment>
             <Well>

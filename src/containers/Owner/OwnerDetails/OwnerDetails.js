@@ -56,7 +56,7 @@ const OwnerDetails = (props) => {
                         {owner.name}
                     </Col>
                 </Row>
-                
+
                 <Row>
                     <Col md={3}>
                         <strong>Date of birth:</strong>
@@ -67,7 +67,7 @@ const OwnerDetails = (props) => {
                 </Row>
                 {renderTypeOfUserConditionally(owner)}
             </Well>
-            <OwnersAccounts accounts={owner.accounts} />                                                                          
+            <OwnersAccounts accounts={owner.accounts} />
         </Fragment>
     )
 }
