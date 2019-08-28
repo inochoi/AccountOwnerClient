@@ -68,9 +68,6 @@ const UpdateOwner = (props) => {
         props.history.push('/owner-list');
     }
 
-    console.log(ownerForm)
-    console.log(owner)
-
     return (
         <Well>
             <Form horizontal onSubmit={updateOwner}>

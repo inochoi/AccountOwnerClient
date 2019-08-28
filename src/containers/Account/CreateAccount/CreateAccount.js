@@ -45,7 +45,6 @@ const CreateAccount = (props) => {
             FormUtilityActions.executeValidationAndReturnFormElement(event, updateAccountForm, id);
         const counter = FormUtilityActions.countInvalidElements(updateAccountForm);
         setAccountForm(updateAccountForm);
-        console.log(accountForm);
         setIsFormValid(counter === 0);
     }
 

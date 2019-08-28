@@ -50,7 +50,6 @@ const UpdateAccount = (props) => {
             FormUtilityActions.executeValidationAndReturnFormElement(e, updateAccountForm, id);
         const counter = FormUtilityActions.countInvalidElements(updateAccountForm);
         setAccountForm(updateAccountForm);
-        console.log(accountForm)
         setIsFormValid(counter === 0);
         dispatch({ type: 'UPDATE_USER_TO_UPDATE', data: { ...account, [e.target.name]: e.target.value } })
     }
@@ -72,8 +71,6 @@ const UpdateAccount = (props) => {
         }
         else return null;
     }
-    console.log(accountForm);
-    console.log(account);
 
     return (
         <div>
