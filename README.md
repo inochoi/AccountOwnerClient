@@ -1,5 +1,5 @@
 # AccountOwnerClient - React/Redux App
-This is a React/Redux based web application, which displays Account-Owner database table through HTTP requests to Account-Owner server created on ASP.NET Core using axios.
+This is a React/Redux based web application, which displays Account-Owner database table(mysql) through HTTP requests(axios) to Account-Owner server created on ASP.NET Core.
 
 ## Tech Stack
 
